@@ -12,7 +12,15 @@ import {
   Cell,
 } from "recharts";
 
-const BarCharts = () => {
+interface Transaction {
+  id: number;
+  title: string;
+  value: number;
+  date: string;
+  repeat: string;
+}
+
+const BarCharts: React.FC = () => {
   const { transactions } = useContext(billContext);
 
   const COLORS = [
@@ -40,7 +48,7 @@ const BarCharts = () => {
 
       <div className="flex flex-row gap-2.5 pr-4 text-sm">
         <ResponsiveContainer width="100%" height={180}>
-          <BarChart data={transactions}>
+          <BarChart data={transactions as Transaction[]}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="title" />
             <YAxis />

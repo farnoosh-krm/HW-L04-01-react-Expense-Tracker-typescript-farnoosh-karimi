@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
-// import { billContext } from "./BillsContext";
 import { billContext } from "./BillsContext";
 
-const ReminderAlert = () => {
-  const { reminderMessage, closeReminder } = useContext(billContext);
+const ReminderAlert: React.FC = () => {
+  const context = useContext(billContext) as {
+    reminderMessage: string;
+    closeReminder: () => void;
+  };
+
+  const { reminderMessage, closeReminder } = context;
 
   if (!reminderMessage) return null;
 
@@ -12,7 +16,9 @@ const ReminderAlert = () => {
       <button
         onClick={closeReminder}
         className="absolute top-1 right-3 text-xl font-bold text-gray-700 hover:text-red-600"
-      ></button>
+      >
+        ×
+      </button>
       {reminderMessage}
     </div>
   );

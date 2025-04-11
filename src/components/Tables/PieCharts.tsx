@@ -2,7 +2,16 @@ import React, { useContext } from "react";
 import { billContext } from "../Bills/BillsContext";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 
-const PieCharts = () => {
+// تعریف نوع داده تراکنش‌ها
+interface Transaction {
+  id: number;
+  title: string;
+  value: number;
+  date: string;
+  repeat: string;
+}
+
+const PieCharts: React.FC = () => {
   const { transactions } = useContext(billContext);
   const COLORS = [
     "#0088FE",
@@ -20,6 +29,7 @@ const PieCharts = () => {
   ];
 
   const RADIAN = Math.PI / 180;
+  
   const renderCustomizedLabel = ({
     cx,
     cy,
@@ -28,7 +38,7 @@ const PieCharts = () => {
     outerRadius,
     percent,
     index,
-  }) => {
+  }: any) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -58,7 +68,7 @@ const PieCharts = () => {
         <ResponsiveContainer width="100%" height={180}>
           <PieChart>
             <Pie
-              data={transactions}
+              data={transactions as Transaction[]}
               cx="50%"
               cy="50%"
               labelLine={false}

@@ -1,9 +1,23 @@
 import React, { useContext } from "react";
 import { billContext } from "./BillsContext";
 
-const ShowBills = () => {
-  const { transactions, searchQuery, startDate, endDate } =
-    useContext(billContext);
+interface Transaction {
+  id: number;
+  title: string;
+  value: number;
+  date: string;
+  repeat: "none" | "weekly" | "monthly";
+}
+
+const ShowBills: React.FC = () => {
+  const context = useContext(billContext) as {
+    transactions: Transaction[];
+    searchQuery: string;
+    startDate: string;
+    endDate: string;
+  };
+
+  const { transactions, searchQuery, startDate, endDate } = context;
 
   const filtered = transactions.filter((item) => {
     const matchesQuery =
@@ -21,12 +35,12 @@ const ShowBills = () => {
   });
 
   return (
-    <div className=" bg-white/30 col-span-1 row-span-3 rounded-2xl p-4 shadow-lg shadow-black/45 text-sm">
+    <div className="bg-white/30 col-span-1 row-span-3 rounded-2xl p-4 shadow-lg shadow-black/45 text-sm">
       <h2 className="text-gray-700 font-bold border-b-2 mb-3 p-2">
         RECENT TRANSACTION
       </h2>
 
-      <div className=" overflow-y-scroll h-45">
+      <div className="overflow-y-scroll h-45">
         <table className="border-collapse w-full bg-white/40 text-gray-600 text-sm">
           <thead>
             <tr>

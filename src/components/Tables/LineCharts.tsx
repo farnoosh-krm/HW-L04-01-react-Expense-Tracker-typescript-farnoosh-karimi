@@ -10,7 +10,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const LineCharts = () => {
+// تعریف نوع داده تراکنش‌ها
+interface Transaction {
+  id: number;
+  title: string;
+  value: number;
+  date: string;
+  repeat: string;
+}
+
+const LineCharts: React.FC = () => {
   const { transactions } = useContext(billContext);
 
   return (
@@ -22,7 +31,7 @@ const LineCharts = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={180}>
-        <LineChart data={transactions}>
+        <LineChart data={transactions as Transaction[]}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="title" />
           <YAxis />

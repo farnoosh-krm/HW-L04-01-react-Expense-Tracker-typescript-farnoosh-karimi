@@ -10,7 +10,7 @@ import BillsLayout from "./components/Bills/BillsLayout";
 import BillProvider from "./components/Bills/BillsContext";
 import ReminderAlert from "./components/Bills/ReminderAlert";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <BillProvider>
@@ -30,6 +30,6 @@ function App() {
       </BillProvider>
     </>
   );
-}
+};
 
 export default App;

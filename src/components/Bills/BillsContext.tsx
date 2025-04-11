@@ -1,22 +1,61 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  ReactNode,
+  FC,
+} from "react";
 
-export const billContext = createContext();
+interface Transaction {
+  id: number;
+  title: string;
+  value: number;
+  date: string;
+  repeat?: "none" | "weekly" | "monthly";
+}
 
-const BillProvider = ({ children }) => {
-  const [transactions, setTransactions] = useState(
-    JSON.parse(localStorage.getItem("transactions")) || []
+interface Category {
+  id: number;
+  name: string;
+  value: string;
+}
+
+interface BillContextType {
+  transactions: Transaction[];
+  addTransaction: (transaction: Transaction) => void;
+  categories: Category[];
+  addCategory: (category: Category) => void;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  startDate: string;
+  setStartDate: React.Dispatch<React.SetStateAction<string>>;
+  endDate: string;
+  setEndDate: React.Dispatch<React.SetStateAction<string>>;
+  reminderMessage: string;
+  closeReminder: () => void;
+}
+
+export const billContext = createContext<BillContextType | null>(null);
+
+interface BillProviderProps {
+  children: ReactNode;
+}
+
+const BillProvider: FC<BillProviderProps> = ({ children }) => {
+  const [transactions, setTransactions] = useState<Transaction[]>(
+    JSON.parse(localStorage.getItem("transactions") || "[]")
   );
 
-  const [categories, setCategories] = useState([
+  const [categories, setCategories] = useState<Category[]>([
     { id: 1, name: "food", value: "100" },
     { id: 2, name: "transportation", value: "50" },
     { id: 3, name: "rent", value: "80" },
   ]);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [reminderMessage, setReminderMessage] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [reminderMessage, setReminderMessage] = useState<string>("");
 
   const closeReminder = () => setReminderMessage("");
 
@@ -26,13 +65,12 @@ const BillProvider = ({ children }) => {
 
   useEffect(() => {
     const now = new Date();
-    const today = now.toISOString().slice(0, 10);
 
     const reminders = transactions.filter((item) => {
       if (item.repeat === "none") return false;
 
       const lastDate = new Date(item.date);
-      const diffDays = Math.floor((now - lastDate) / (1000 * 60 * 60 * 24));
+      const diffDays = Math.floor((now.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
 
       if (item.repeat === "weekly" && diffDays >= 7) return true;
       if (item.repeat === "monthly" && diffDays >= 30) return true;
@@ -42,13 +80,14 @@ const BillProvider = ({ children }) => {
 
     if (reminders.length > 0) {
       setReminderMessage("📌 It's time to pay your recurring expenses!");
-      // alert("📌 It's time to pay your recurring expenses!");
     }
   }, []);
 
-  const addTransaction = (transaction) =>
-    setTransactions([...transactions, transaction]);
-  const addCategory = (category) => setCategories([...categories, category]);
+  const addTransaction = (transaction: Transaction) =>
+    setTransactions((prev) => [...prev, transaction]);
+
+  const addCategory = (category: Category) =>
+    setCategories((prev) => [...prev, category]);
 
   return (
     <billContext.Provider

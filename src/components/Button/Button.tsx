@@ -1,6 +1,13 @@
 import React from "react";
 
-const Button = ({ type, label, widthBtn, onclick }) => {
+interface ButtonProps {
+  type: "button" | "submit" | "reset";
+  label: string;
+  widthBtn: string;
+  onclick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ type, label, widthBtn, onclick }) => {
   return (
     <div>
       <button

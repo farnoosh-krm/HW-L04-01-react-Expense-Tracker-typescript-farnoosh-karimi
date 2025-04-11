@@ -1,8 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const MiddleLayout = ({ children }) => {
+interface MiddleLayoutProps {
+  children: ReactNode;
+}
+
+const MiddleLayout: React.FC<MiddleLayoutProps> = ({ children }) => {
   return (
-    <div className="w-full  grid grid-cols-2 grid-rows-7 gap-4">{children}</div>
+    <div className="w-full grid grid-cols-2 grid-rows-7 gap-4">{children}</div>
   );
 };
 

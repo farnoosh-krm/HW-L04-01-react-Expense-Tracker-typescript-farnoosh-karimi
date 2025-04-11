@@ -1,6 +1,11 @@
 import React from "react";
 
-const MenuItems = ({ icon, title }) => {
+interface MenuItemsProps {
+  icon: string;
+  title: string;
+}
+
+const MenuItems: React.FC<MenuItemsProps> = ({ icon, title }) => {
   return (
     <div>
       <a className="flex flex-row items-center gap-2 mt-4" href="#">
@@ -9,7 +14,7 @@ const MenuItems = ({ icon, title }) => {
           src={icon}
           alt=""
         />
-        <p className=" font-bold text-[15px] text-gray-800 border-b-2 border-gray-400">
+        <p className="font-bold text-[15px] text-gray-800 border-b-2 border-gray-400">
           {title}
         </p>
       </a>

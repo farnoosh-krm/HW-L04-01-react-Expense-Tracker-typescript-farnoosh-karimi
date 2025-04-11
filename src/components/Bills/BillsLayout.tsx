@@ -1,6 +1,10 @@
-import React from "react";
+import React, { ReactNode, FC } from "react";
 
-const BillsLayout = ({ children }) => {
+interface BillsLayoutProps {
+  children: ReactNode;
+}
+
+const BillsLayout: FC<BillsLayoutProps> = ({ children }) => {
   return <div>{children}</div>;
 };
 

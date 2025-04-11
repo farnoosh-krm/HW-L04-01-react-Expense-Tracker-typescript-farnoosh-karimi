@@ -8,9 +8,9 @@ import signUpIcon from "../../images/signUp.png";
 import profileIcon from "../../images/profile.png";
 import MenuItems from "./MenuItems";
 
-const MenuBar = () => {
+const MenuBar: React.FC = () => {
   return (
-    <div className="flex flex-col  items-center gap-[15px] shadow-lg shadow-black/30 rounded-2xl w-[250px] h-[650px] bg-white/40 ">
+    <div className="flex flex-col items-center gap-[15px] shadow-lg shadow-black/30 rounded-2xl w-[250px] h-[650px] bg-white/40 ">
       <ul>
         <li>
           <MenuItems icon={homeIcon} title={"Dashboard"} />
