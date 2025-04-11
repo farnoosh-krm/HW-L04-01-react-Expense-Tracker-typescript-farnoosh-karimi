@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Courgette&family=DM+Serif+Display:ital@0;1&family=Mystery+Quest&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia&display=swap");
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  /* padding-bottom: 20px; */
+  font-family: "Poppins";
+  /* min-height: 100vh; */
+}
+
+#root {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  background: linear-gradient(
+    to right,
+    rgb(247, 241, 132),
+    rgb(255, 168, 203),
+    rgb(236, 152, 251),
+    rgb(174, 202, 251)
+  );
+  margin: 10px;
+  padding: 15px;
+  border-radius: 15px;
+  min-height: 97vh;
+
+  /* min-height: 100vh; */
+}
