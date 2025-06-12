@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0', // برای دسترسی از خارج
     port: 10000,
     allowedHosts: [
-      'hw-l04-01-react-expense-tracker.onrender.com',
+      'hw-l04-01-react-expense-tracker-6fxi.onrender.com',
     ],
   },
 });
