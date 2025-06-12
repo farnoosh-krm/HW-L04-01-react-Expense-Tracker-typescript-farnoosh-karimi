@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0', // برای دسترسی از خارج
     port: 10000,
     allowedHosts: [
-      'hw-l04-02-react-typescript-project-pgw5.onrender.com',
+      'hw-l04-01-react-expense-tracker.onrender.com',
     ],
   },
 });
