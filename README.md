@@ -12,6 +12,8 @@ Experience the app:[View Online]()
 - View a list of all expenses
 - Filter expenses by category or date
 - just desktop devices
+- Line Charts: Expense trends over time
+- Pie Charts: Expense distribution by category
 - Type safety with TypeScript
 
 ## Getting Started
